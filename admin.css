@@ -1,0 +1,875 @@
+/* 
+ * Corrida Primavera Kids - Estilos do Painel Administrativo
+ * Tema: Minimalista Inspirado na Apple (macOS Dashboard Style)
+ * Organização: Clube de Aventureiros Missão Alagoas
+ */
+
+/* -------------------------------------------------------------
+   1. Variáveis & Reset Geral (Apple Admin Theme)
+------------------------------------------------------------- */
+:root {
+  --color-admin-primary: #0071e3;        /* Azul Apple */
+  --color-admin-primary-dark: #005bb5;
+  --color-admin-secondary: #515154;      /* Cinza macOS */
+  --color-admin-secondary-dark: #1d1d1f;
+  --color-admin-bg: #f5f5f7;             /* Fundo cinza claro */
+  --color-admin-white: #ffffff;
+  --color-admin-text: #1d1d1f;           /* Texto escuro Apple */
+  --color-admin-text-sec: #86868b;       /* Texto secundário */
+  
+  --color-accent-blue: #0071e3;
+  --color-accent-pink: #ff2d55;          /* Rosa iOS */
+  --color-accent-yellow: #ff9500;        /* Laranja iOS */
+  --color-accent-red: #ff3b30;           /* Vermelho iOS */
+  
+  --shadow-admin: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
+  --shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --radius-admin: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-admin-text);
+  background-color: var(--color-admin-bg);
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------
+   2. Blocker de Login (macOS Credential Prompt Style)
+------------------------------------------------------------- */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Overlay escuro sutil */
+  backdrop-filter: blur(25px) saturate(180%); /* Efeito frosted glass */
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  background-color: rgba(255, 255, 255, 0.85); /* Fundo vidro */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 30px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  animation: fadeInScale 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.login-logo img {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px; /* Logo retangular suave */
+  object-fit: cover;
+  border: none;
+  box-shadow: var(--shadow-admin);
+  margin-bottom: 16px;
+}
+
+.login-card h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--color-admin-text);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.login-card p {
+  font-size: 0.8rem;
+  color: var(--color-admin-text-sec);
+  margin-bottom: 20px;
+}
+
+.form-group-login {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.form-group-login input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 600;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-group-login input:focus {
+  border-color: var(--color-admin-primary);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.login-error {
+  color: var(--color-accent-red);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.btn-admin-login {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-admin-primary);
+  color: var(--color-admin-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-admin-login:hover {
+  background-color: var(--color-admin-primary-dark);
+}
+
+.security-warning {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--color-admin-text-sec);
+  text-align: left;
+  line-height: 1.35;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------
+   3. Layout Principal do Dashboard
+------------------------------------------------------------- */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-admin-white);
+  padding: 16px 24px;
+  border-radius: var(--radius-admin);
+  box-shadow: var(--shadow-admin);
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  border: none;
+  object-fit: cover;
+  box-shadow: var(--shadow-admin);
+}
+
+.header-left h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-admin-text);
+  letter-spacing: -0.02em;
+}
+
+.header-left p {
+  font-size: 0.75rem;
+  color: var(--color-admin-text-sec);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Status Connection Pills */
+.db-status-badge {
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: none;
+}
+
+.db-status-badge.online {
+  background-color: #e2fbe8;
+  color: #1e7e34;
+}
+
+.db-status-badge.offline {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Header Buttons */
+.btn-secondary-admin,
+.btn-danger-admin {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+}
+
+.btn-secondary-admin {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.btn-secondary-admin:hover {
+  background-color: #e8e8ed;
+}
+
+.btn-danger-admin {
+  background-color: #fff2f1;
+  color: var(--color-accent-red);
+  border: 1px solid rgba(255, 59, 48, 0.15);
+}
+
+.btn-danger-admin:hover {
+  background-color: #ffe5e3;
+}
+
+/* -------------------------------------------------------------
+   4. Grid de Estatísticas (iOS Widgets Look)
+------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background-color: var(--color-admin-white);
+  padding: 16px 20px;
+  border-radius: var(--radius-admin);
+  box-shadow: var(--shadow-admin);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-left: none; /* Remove a borda grossa colorida anterior */
+  position: relative;
+}
+
+/* Adiciona um pequeno ponto colorido no canto estilo iOS */
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.card-total::after { background-color: var(--color-admin-primary); }
+.card-meninos::after { background-color: var(--color-accent-blue); }
+.card-meninas::after { background-color: var(--color-accent-pink); }
+.card-cidades::after { background-color: var(--color-admin-secondary); }
+.card-clubes::after { background-color: var(--color-accent-yellow); }
+
+.stat-icon {
+  font-size: 1.4rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background-color: #f5f5f7;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-admin-text);
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-admin-text-sec);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------------------
+   5. Barra de Ações (macOS Finder Toolbar)
+------------------------------------------------------------- */
+.toolbar-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  flex-grow: 1;
+  max-width: 480px;
+  background-color: var(--color-admin-white);
+  border-radius: 6px;
+  padding: 0 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.search-icon {
+  font-size: 0.8rem;
+  color: var(--color-admin-text-sec);
+  margin-right: 8px;
+}
+
+.search-box input {
+  padding: 8px 0;
+  font-size: 0.85rem;
+}
+
+.action-buttons {
+  gap: 8px;
+}
+
+.btn-action {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-action:hover {
+  transform: none;
+  opacity: 0.9;
+}
+
+.btn-excel { background-color: #34c759; }
+.btn-pdf { background-color: #ff3b30; }
+.btn-print { background-color: #0071e3; }
+
+/* -------------------------------------------------------------
+   6. Tabela macOS List View
+------------------------------------------------------------- */
+.table-section {
+  background-color: var(--color-admin-white);
+  border-radius: var(--radius-admin);
+  box-shadow: var(--shadow-admin);
+  padding: 0;
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden; /* Mantém cantos arredondados na tabela */
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.85rem;
+}
+
+.admin-table th {
+  background-color: var(--color-admin-white);
+  color: var(--color-admin-text-sec);
+  font-weight: 500;
+  text-transform: none;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f5f5f7; /* Cor de seleção cinza macOS */
+}
+
+.td-kid-name {
+  color: var(--color-admin-text);
+  font-weight: 500;
+}
+
+/* Sex Badges */
+.sex-badge {
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  border-radius: 4px;
+}
+
+.sex-badge.sex-m { background-color: #e0f2fe; color: #0071e3; }
+.sex-badge.sex-f { background-color: #ffe5ec; color: #ff2d55; }
+
+/* Contatos */
+.td-contact {
+  font-size: 0.75rem;
+}
+
+.td-contact .c-phone {
+  display: block;
+}
+
+.td-contact .c-email {
+  color: var(--color-admin-text-sec);
+}
+
+/* Ficha de Saúde */
+.health-pill {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  max-width: 150px;
+}
+
+.health-alergia { background-color: #fff2f1; color: #c91f16; border: 1px solid rgba(255, 59, 48, 0.1); }
+.health-restricao { background-color: #fffbeb; color: #b45309; border: 1px solid rgba(217, 119, 6, 0.1); }
+.health-none { color: var(--color-admin-text-sec); }
+
+/* Ações */
+.td-actions {
+  gap: 4px;
+}
+
+.btn-table-action {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.btn-view { background-color: #f5f5f7; color: #1d1d1f; border: 1px solid rgba(0,0,0,0.05); }
+.btn-view:hover { background-color: #e8e8ed; }
+
+.btn-edit { background-color: #f5f5f7; color: #ff9500; border: 1px solid rgba(0,0,0,0.05); }
+.btn-edit:hover { background-color: #ffeccc; }
+
+.btn-delete { background-color: #fff2f1; color: #ff3b30; border: 1px solid rgba(255, 59, 48, 0.05); }
+.btn-delete:hover { background-color: #ffe5e3; }
+
+/* -------------------------------------------------------------
+   7. Modais (iOS / macOS Dialog Design)
+------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.modal-card {
+  background-color: var(--color-admin-white);
+  border-radius: 12px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeInScale 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--color-admin-text);
+  letter-spacing: -0.01em;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-admin-text-sec);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.btn-close-modal:hover {
+  color: var(--color-admin-text);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  background-color: #f5f5f7;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Modais: Visualização */
+.details-grid-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-section-box {
+  background-color: #f5f5f7;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: none;
+}
+
+.modal-section-box.full-width {
+  grid-column: span 2;
+}
+
+.modal-section-box h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-admin-text-sec);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-section-box p {
+  font-size: 0.85rem;
+  color: var(--color-admin-text);
+  line-height: 1.4;
+}
+
+.meta-box {
+  background-color: #e8e8ed;
+}
+
+.btn-modal-close {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background-color: #ffffff;
+  color: #1d1d1f;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-modal-close:hover {
+  background-color: #f5f5f7;
+}
+
+/* Modais: Edição */
+.form-grid-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.modal-edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-edit-section.full-width {
+  grid-column: span 2;
+}
+
+.modal-edit-section h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-admin-text);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edit-group label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-admin-text-sec);
+}
+
+.edit-group input[type="text"],
+.edit-group input[type="email"],
+.edit-group input[type="date"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.edit-group input:focus {
+  border-color: var(--color-admin-primary);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.radio-group-modal {
+  display: flex;
+  gap: 16px;
+  padding: 6px 0;
+}
+
+.radio-group-modal label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.edit-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.edit-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.btn-modal-save {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background-color: var(--color-admin-primary);
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-modal-save:hover {
+  background-color: var(--color-admin-primary-dark);
+}
+
+/* Modal Deletar */
+.modal-confirm {
+  max-width: 400px;
+}
+
+.warning-text {
+  border: 1px solid rgba(255, 59, 48, 0.1);
+  background-color: #fff2f1;
+  color: #c91f16;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* -------------------------------------------------------------
+   8. Mídia Queries de Responsividade do Painel
+------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 16px;
+    text-align: center;
+  }
+  .header-left {
+    flex-direction: column;
+  }
+  .header-right {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .header-right .db-status-badge {
+    text-align: center;
+  }
+  .toolbar-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .search-box {
+    max-width: 100%;
+  }
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+  .btn-action {
+    padding: 10px 4px;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+  .btn-action span {
+    font-size: 0.9rem;
+  }
+  
+  /* Modais no Mobile */
+  .form-grid-modal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .modal-edit-section.full-width {
+    grid-column: span 1;
+  }
+  .edit-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .edit-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .details-grid-modal {
+    grid-template-columns: 1fr;
+  }
+  .modal-section-box.full-width {
+    grid-column: span 1;
+  }
+}
+
+/* -------------------------------------------------------------
+   9. Estilo de Impressão (@media print)
+------------------------------------------------------------- */
+@media print {
+  body {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 10px;
+  }
+  .admin-table th {
+    background-color: #f2f2f2 !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+  .admin-table td {
+    border-bottom: 1px solid #ddd !important;
+  }
+  /* Remove elementos irrelevantes na impressão */
+  .no-print,
+  .btn-action,
+  .toolbar-section,
+  .admin-header .btn-secondary-admin,
+  .admin-header .btn-danger-admin,
+  .admin-footer {
+    display: none !important;
+  }
+}

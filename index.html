@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrições - Corrida Primavera Kids | Missão Alagoas</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Inscrições abertas para a Corrida Primavera Kids. Organizado pelo Clube de Aventureiros Missão Alagoas. Participe no dia 09 de Julho às 16:00!">
+  <meta name="keywords" content="Corrida Primavera Kids, Clube de Aventureiros, Missão Alagoas, Inscrição, Crianças, Corrida Infantil">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Elementos de Natureza Decorativos de Fundo -->
+  <div class="decorations">
+    <div class="leaf leaf-1"></div>
+    <div class="leaf leaf-2"></div>
+    <div class="flower flower-1"></div>
+    <div class="flower flower-2"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="logo-area">
+        <img src="assets/logo/logo.jpg" alt="Logo Primavera Kids" class="site-logo" id="header-logo">
+        <div class="logo-text">
+          <span class="org-name">Clube de Aventureiros</span>
+          <span class="org-sub">Missão Alagoas</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#inicio" class="active">Início</a>
+        <a href="#detalhes">Informações</a>
+        <a href="#inscricao" class="btn-nav">Fazer Inscrição</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner Section -->
+  <section id="inicio" class="hero-section">
+    <div class="hero-banner-container">
+      <img src="assets/imagens/banner.jpg" alt="Banner Corrida Primavera Kids" class="hero-banner-img">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <span class="badge">Inscrições Abertas</span>
+        <h1>Corrida Primavera Kids</h1>
+        <p class="hero-subtitle">Uma aventura florida e alegre cheia de energia, fé e diversão para toda a família!</p>
+        <div class="hero-ctas">
+          <a href="#inscricao" class="btn btn-primary btn-large btn-ripple" id="btn-hero-cta">INSCREVA-SE AGORA</a>
+          <a href="#detalhes" class="btn btn-secondary btn-large">Saber Mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Details / Cards -->
+  <section id="detalhes" class="details-section">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Prepare-se para a Aventura!</h2>
+        <p class="section-subtitle">Um dia especial focado na saúde, natureza, amizade e valores cristãos.</p>
+      </div>
+
+      <div class="details-grid">
+        <!-- Card Data -->
+        <div class="detail-card">
+          <div class="card-icon icon-yellow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h3>📅 Data do Evento</h3>
+          <p class="highlight-text text-yellow">09 de Julho</p>
+          <p>Salve no seu calendário para não esquecer esta data incrível!</p>
+        </div>
+
+        <!-- Card Horário -->
+        <div class="detail-card">
+          <div class="card-icon icon-red">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h3>🕓 Horário</h3>
+          <p class="highlight-text text-red">16:00</p>
+          <p>Recomendamos chegar com 30 minutos de antecedência.</p>
+        </div>
+
+        <!-- Card Local -->
+        <div class="detail-card">
+          <div class="card-icon icon-green">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <h3>📍 Local da Corrida</h3>
+          <p class="highlight-text text-green">Trilha da Natureza</p>
+          <p>Um ambiente seguro cercado de árvores, flores e ar puro.</p>
+        </div>
+      </div>
+
+      <!-- Live Participant Counter -->
+      <div class="live-counter-card">
+        <div class="counter-content">
+          <div class="counter-text">
+            <h4>Junte-se à diversão!</h4>
+            <p>Junte-se a dezenas de aventureiros que já confirmaram presença.</p>
+          </div>
+          <div class="counter-number-wrapper">
+            <span id="registered-counter" class="counter-number">--</span>
+            <span class="counter-label">Crianças Inscritas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="inscricao" class="registration-section">
+    <div class="container container-small">
+      <div class="form-card">
+        <div class="form-header">
+          <h2>Ficha de Inscrição</h2>
+          <p>Preencha os campos abaixo com atenção para garantir a participação da criança.</p>
+          
+          <!-- Progress Bar -->
+          <div class="progress-container">
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar" id="form-progress"></div>
+            </div>
+            <div class="progress-labels">
+              <span class="step-label active" data-step="1">Responsável</span>
+              <span class="step-label" data-step="2">Criança</span>
+              <span class="step-label" data-step="3">Info Extra</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="registration-form" novalidate>
+          <!-- Mensagem de Erro Geral -->
+          <div class="alert-box alert-danger hidden" id="general-error">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alert-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span id="general-error-message">Por favor, preencha todos os campos corretamente antes de enviar.</span>
+          </div>
+
+          <!-- SEÇÃO 1: DADOS DO RESPONSÁVEL -->
+          <fieldset class="form-section" id="section-responsavel">
+            <legend><span>1</span> Dados do Responsável</legend>
+            
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="responsavel_nome">Nome Completo do Responsável *</label>
+                <div class="input-wrapper">
+                  <input type="text" id="responsavel_nome" name="responsavel_nome" placeholder="Digite seu nome completo" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Este campo é obrigatório e deve conter nome e sobrenome.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="responsavel_cpf">CPF *</label>
+                <div class="input-wrapper">
+                  <input type="text" id="responsavel_cpf" name="responsavel_cpf" placeholder="000.000.000-00" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Digite um CPF válido.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="responsavel_telefone">Telefone (WhatsApp) *</label>
+                <div class="input-wrapper">
+                  <input type="tel" id="responsavel_telefone" name="responsavel_telefone" placeholder="(00) 90000-0000" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Digite um telefone celular válido.</div>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="responsavel_email">E-mail *</label>
+                <div class="input-wrapper">
+                  <input type="email" id="responsavel_email" name="responsavel_email" placeholder="nome@exemplo.com" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Digite um endereço de e-mail válido.</div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SEÇÃO 2: DADOS DO PARTICIPANTE -->
+          <fieldset class="form-section" id="section-participante">
+            <legend><span>2</span> Dados do Participante (Criança)</legend>
+            
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="participante_nome">Nome Completo da Criança *</label>
+                <div class="input-wrapper">
+                  <input type="text" id="participante_nome" name="participante_nome" placeholder="Nome completo da criança" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Este campo é obrigatório.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="participante_nascimento">Data de Nascimento *</label>
+                <div class="input-wrapper">
+                  <input type="date" id="participante_nascimento" name="participante_nascimento" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Selecione uma data de nascimento válida.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="participante_idade">Idade (calculada) *</label>
+                <input type="text" id="participante_idade" name="participante_idade" readonly placeholder="Calculada automaticamente" class="readonly-input">
+              </div>
+
+              <div class="form-group full-width">
+                <label>Sexo *</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="participante_sexo" value="M" required>
+                    <span class="radio-custom"></span> Masculino
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="participante_sexo" value="F" required>
+                    <span class="radio-custom"></span> Feminino
+                  </label>
+                </div>
+                <div class="error-msg radio-error">Selecione o sexo da criança.</div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SEÇÃO 3: INFORMAÇÕES EXTRAS -->
+          <fieldset class="form-section" id="section-info">
+            <legend><span>3</span> Informações de Aventura & Saúde</legend>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="info_clube">Clube de Aventureiros</label>
+                <input type="text" id="info_clube" name="info_clube" placeholder="Ex: Estrelinhas do Vale">
+              </div>
+
+              <div class="form-group">
+                <label for="info_igreja">Igreja</label>
+                <input type="text" id="info_igreja" name="info_igreja" placeholder="Ex: IASD Central Maceió">
+              </div>
+
+              <div class="form-group">
+                <label for="info_cidade">Cidade *</label>
+                <div class="input-wrapper">
+                  <input type="text" id="info_cidade" name="info_cidade" placeholder="Ex: Maceió" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Este campo é obrigatório.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="info_emergencia">Contato de Emergência (Telefone) *</label>
+                <div class="input-wrapper">
+                  <input type="tel" id="info_emergencia" name="info_emergencia" placeholder="(00) 90000-0000" required>
+                  <span class="validation-badge"></span>
+                </div>
+                <div class="error-msg">Digite um contato de emergência válido.</div>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="info_alergias">Alergias</label>
+                <textarea id="info_alergias" name="info_alergias" placeholder="Descreva se a criança possui alguma alergia (medicamentos, insetos, etc.). Deixe em branco se não houver." rows="2"></textarea>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="info_restricoes">Restrições Alimentares</label>
+                <textarea id="info_restricoes" name="info_restricoes" placeholder="Descreva se a criança possui restrições alimentares. Deixe em branco se não houver." rows="2"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- DECLARAÇÃO E SUBMIT -->
+          <div class="form-footer">
+            <div class="checkbox-wrapper">
+              <label class="checkbox-label">
+                <input type="checkbox" id="declaracao_verdade" name="declaracao_verdade" required>
+                <span class="checkbox-custom"></span>
+                <span>Declaro que as informações acima são verdadeiras. *</span>
+              </label>
+              <div class="error-msg checkbox-error">Você precisa declarar que as informações são verdadeiras.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit btn-large btn-ripple" id="btn-finalizar">
+              <span class="btn-text">FINALIZAR INSCRIÇÃO</span>
+              <span class="btn-loader hidden">
+                <svg class="spinner" viewBox="0 0 50 50">
+                  <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                </svg>
+                Processando...
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Screen Overlay -->
+  <div class="success-screen-overlay hidden" id="success-screen">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h2>Inscrição realizada com sucesso!</h2>
+      <p class="success-message">Obrigado por participar da Corrida Primavera Kids.</p>
+      
+      <!-- Receipt Details Box -->
+      <div class="success-details-ticket">
+        <div class="ticket-header">
+          <span class="ticket-title">INGRESSO DIGITAL</span>
+          <span class="ticket-code" id="success-ticket-id">#0000</span>
+        </div>
+        <div class="ticket-body">
+          <div class="ticket-row">
+            <span class="ticket-label">Participante</span>
+            <span class="ticket-value" id="success-kid-name">Nome da Criança</span>
+          </div>
+          <div class="ticket-row">
+            <span class="ticket-label">Responsável</span>
+            <span class="ticket-value" id="success-parent-name">Nome do Responsável</span>
+          </div>
+          <div class="ticket-row-grid">
+            <div>
+              <span class="ticket-label">📅 Data</span>
+              <span class="ticket-value-highlight">09 de Julho</span>
+            </div>
+            <div>
+              <span class="ticket-label">🕓 Horário</span>
+              <span class="ticket-value-highlight">16:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-footer">
+          <p>Apresente este ingresso no dia do evento</p>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary btn-large btn-ripple" id="btn-success-close">Fazer Nova Inscrição</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo/logo.jpg" alt="Logo Primavera Kids" class="footer-logo">
+        <div>
+          <h4>Clube de Aventureiros Missão Alagoas</h4>
+          <p>Formando cidadãos de bem para esta terra e para o céu.</p>
+        </div>
+      </div>
+      <div class="footer-info">
+        <h5>Corrida Primavera Kids</h5>
+        <ul>
+          <li>📅 09 de Julho às 16:00</li>
+          <li>📍 Maceió, Alagoas</li>
+          <li>📧 contato@missaoalagoas.org</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Clube de Aventureiros Missão Alagoas. Todos os direitos reservados. Protótipo Front-End/Back-End. <a href="admin.html" class="admin-discreet-link" title="Área Restrita">🔒</a></p>
+    </div>
+  </footer>
+
+  <!-- Button Back To Top -->
+  <button id="back-to-top" class="back-to-top hidden" title="Voltar ao topo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+  <!-- JavaScript Principal -->
+  <script src="script.js"></script>
+</body>
+</html>

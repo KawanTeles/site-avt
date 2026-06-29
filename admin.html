@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Corrida Primavera Kids</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos do Admin -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       1. TELA DE LOGIN POR SENHA (BLOCKER)
+       ========================================== -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="assets/logo/logo.jpg" alt="Logo Primavera Kids">
+      </div>
+      <h2>Painel Administrativo</h2>
+      <p>Digite a senha de acesso para gerenciar as inscrições.</p>
+      
+      <form id="login-form" novalidate>
+        <div class="form-group-login">
+          <input type="password" id="admin-password" placeholder="Senha de Acesso" maxlength="6" autofocus required>
+          <span class="password-toggle" id="toggle-password">👁️</span>
+        </div>
+        <div class="login-error hidden" id="login-error-msg">Senha incorreta. Tente novamente!</div>
+        <button type="submit" class="btn-admin-login">Entrar no Painel</button>
+      </form>
+      
+      <div class="security-warning">
+        ⚠️ <strong>Nota de Segurança:</strong> Este é um protótipo local. A senha (1844) está programada no script temporariamente. Em produção, utilize autenticação de backend segura (sessões HTTP, tokens JWT e hashes de senha armazenados de forma criptografada).
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. CONTEÚDO PRINCIPAL DO PAINEL
+       ========================================== -->
+  <div id="admin-dashboard" class="dashboard-container hidden">
+    <!-- Header Administrativo -->
+    <header class="admin-header">
+      <div class="header-left">
+        <img src="assets/logo/logo.jpg" alt="Logo Primavera Kids" class="admin-logo">
+        <div>
+          <h1>Painel de Controle</h1>
+          <p>Corrida Primavera Kids - Missão Alagoas</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="db-status-badge offline" id="db-status-badge">Detectando banco...</span>
+        <a href="index.html" class="btn-secondary-admin">Ver Site</a>
+        <button id="btn-logout" class="btn-danger-admin">Sair</button>
+      </div>
+    </header>
+
+    <!-- Estatísticas Rápidas -->
+    <section class="stats-grid">
+      <div class="stat-card card-total">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-total">--</span>
+          <span class="stat-label">Total de Inscritos</span>
+        </div>
+      </div>
+      <div class="stat-card card-meninos">
+        <div class="stat-icon">👦</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-meninos">--</span>
+          <span class="stat-label">Meninos</span>
+        </div>
+      </div>
+      <div class="stat-card card-meninas">
+        <div class="stat-icon">👧</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-meninas">--</span>
+          <span class="stat-label">Meninas</span>
+        </div>
+      </div>
+      <div class="stat-card card-cidades">
+        <div class="stat-icon">📍</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-cidades">--</span>
+          <span class="stat-label">Cidades</span>
+        </div>
+      </div>
+      <div class="stat-card card-clubes">
+        <div class="stat-icon">⛺</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-clubes">--</span>
+          <span class="stat-label">Clubes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Ferramentas / Filtros -->
+    <section class="toolbar-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Pesquise por nome da criança, responsável, clube, cidade ou igreja...">
+      </div>
+      <div class="action-buttons">
+        <button id="btn-export-excel" class="btn-action btn-excel" title="Exportar para Excel (CSV)">
+          <span>📊</span> Exportar Excel
+        </button>
+        <button id="btn-export-pdf" class="btn-action btn-pdf" title="Exportar Lista em PDF">
+          <span>📄</span> Exportar PDF
+        </button>
+        <button id="btn-print" class="btn-action btn-print" title="Imprimir Lista Completa">
+          <span>🖨️</span> Imprimir Lista
+        </button>
+      </div>
+    </section>
+
+    <!-- Tabela de Dados -->
+    <section class="table-section">
+      <div class="table-responsive">
+        <table class="admin-table" id="inscricoes-table">
+          <thead>
+            <tr>
+              <th>Criança</th>
+              <th>Idade</th>
+              <th>Sexo</th>
+              <th>Responsável</th>
+              <th>Telefone</th>
+              <th>Clube / Cidade</th>
+              <th>Alergias / Restrições</th>
+              <th>Data Insc.</th>
+              <th class="no-print">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr>
+              <td colspan="9" class="td-empty">Carregando inscrições...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer Administrativo -->
+    <footer class="admin-footer">
+      <p>&copy; 2026 Clube de Aventureiros Missão Alagoas | Painel Administrativo de Gerenciamento da Corrida Primavera Kids</p>
+    </footer>
+  </div>
+
+  <!-- ==========================================
+       3. MODAL: VISUALIZAR INSCRIÇÃO DETALHADA
+       ========================================== -->
+  <div id="modal-view" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Ficha de Inscrição Completa</h2>
+        <button class="btn-close-modal" onclick="closeModal('modal-view')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="details-grid-modal">
+          <!-- Responsável -->
+          <div class="modal-section-box">
+            <h3>Dados do Responsável</h3>
+            <p><strong>Nome:</strong> <span id="v-resp-nome">--</span></p>
+            <p><strong>CPF:</strong> <span id="v-resp-cpf">--</span></p>
+            <p><strong>Telefone/WhatsApp:</strong> <span id="v-resp-tel">--</span></p>
+            <p><strong>E-mail:</strong> <span id="v-resp-email">--</span></p>
+          </div>
+
+          <!-- Participante -->
+          <div class="modal-section-box">
+            <h3>Dados do Participante</h3>
+            <p><strong>Nome da Criança:</strong> <span id="v-part-nome">--</span></p>
+            <p><strong>Nascimento:</strong> <span id="v-part-nasc">--</span></p>
+            <p><strong>Idade:</strong> <span id="v-part-idade">--</span></p>
+            <p><strong>Sexo:</strong> <span id="v-part-sexo">--</span></p>
+          </div>
+
+          <!-- Aventura / Igreja -->
+          <div class="modal-section-box">
+            <h3>Aventura & Localização</h3>
+            <p><strong>Clube:</strong> <span id="v-info-clube">--</span></p>
+            <p><strong>Igreja:</strong> <span id="v-info-igreja">--</span></p>
+            <p><strong>Cidade:</strong> <span id="v-info-cidade">--</span></p>
+            <p><strong>Contato Emergência:</strong> <span id="v-info-emergencia">--</span></p>
+          </div>
+
+          <!-- Saúde -->
+          <div class="modal-section-box full-width">
+            <h3>Ficha de Saúde</h3>
+            <p><strong>Alergias:</strong> <span id="v-info-alergias">--</span></p>
+            <p><strong>Restrições Alimentares:</strong> <span id="v-info-restricoes">--</span></p>
+          </div>
+
+          <!-- Metadados -->
+          <div class="modal-section-box full-width meta-box">
+            <p><strong>Data da Inscrição:</strong> <span id="v-meta-data">--</span></p>
+            <p><strong>ID Inscrição:</strong> <span id="v-meta-id">--</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-close" onclick="closeModal('modal-view')">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. MODAL: EDITAR INSCRIÇÃO
+       ========================================== -->
+  <div id="modal-edit" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Editar Inscrição</h2>
+        <button class="btn-close-modal" onclick="closeModal('modal-edit')">&times;</button>
+      </div>
+      <form id="edit-form" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="edit-id">
+          
+          <div class="form-grid-modal">
+            <!-- Dados do Responsável -->
+            <div class="modal-edit-section">
+              <h4>Dados do Responsável</h4>
+              <div class="edit-group">
+                <label for="edit_resp_nome">Nome Completo do Responsável</label>
+                <input type="text" id="edit_resp_nome" required>
+              </div>
+              <div class="edit-group">
+                <label for="edit_resp_cpf">CPF</label>
+                <input type="text" id="edit_resp_cpf" placeholder="000.000.000-00" required>
+              </div>
+              <div class="edit-group">
+                <label for="edit_resp_tel">Telefone (WhatsApp)</label>
+                <input type="text" id="edit_resp_tel" placeholder="(00) 90000-0000" required>
+              </div>
+              <div class="edit-group">
+                <label for="edit_resp_email">E-mail</label>
+                <input type="email" id="edit_resp_email" required>
+              </div>
+            </div>
+
+            <!-- Dados do Participante -->
+            <div class="modal-edit-section">
+              <h4>Dados do Participante</h4>
+              <div class="edit-group">
+                <label for="edit_part_nome">Nome da Criança</label>
+                <input type="text" id="edit_part_nome" required>
+              </div>
+              <div class="edit-group">
+                <label for="edit_part_nasc">Data de Nascimento</label>
+                <input type="date" id="edit_part_nasc" required>
+              </div>
+              <div class="edit-group">
+                <label for="edit_part_idade">Idade (Calculada)</label>
+                <input type="text" id="edit_part_idade" readonly class="readonly-input">
+              </div>
+              <div class="edit-group">
+                <label>Sexo</label>
+                <div class="radio-group-modal">
+                  <label><input type="radio" name="edit_part_sexo" value="M"> M</label>
+                  <label><input type="radio" name="edit_part_sexo" value="F"> F</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Aventura & Saúde -->
+            <div class="modal-edit-section full-width">
+              <h4>Aventura & Saúde</h4>
+              <div class="edit-grid-3">
+                <div class="edit-group">
+                  <label for="edit_info_clube">Clube de Aventureiros</label>
+                  <input type="text" id="edit_info_clube">
+                </div>
+                <div class="edit-group">
+                  <label for="edit_info_igreja">Igreja</label>
+                  <input type="text" id="edit_info_igreja">
+                </div>
+                <div class="edit-group">
+                  <label for="edit_info_cidade">Cidade</label>
+                  <input type="text" id="edit_info_cidade" required>
+                </div>
+              </div>
+              <div class="edit-grid-2">
+                <div class="edit-group">
+                  <label for="edit_info_emergencia">Contato Emergência</label>
+                  <input type="text" id="edit_info_emergencia" placeholder="(00) 90000-0000" required>
+                </div>
+                <div class="edit-group">
+                  <label for="edit_info_alergias">Alergias</label>
+                  <input type="text" id="edit_info_alergias">
+                </div>
+              </div>
+              <div class="edit-group">
+                <label for="edit_info_restricoes">Restrições Alimentares</label>
+                <input type="text" id="edit_info_restricoes">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal-close" onclick="closeModal('modal-edit')">Cancelar</button>
+          <button type="submit" class="btn-modal-save">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       5. MODAL: DELETAR (CONFIRMAÇÃO)
+       ========================================== -->
+  <div id="modal-delete" class="modal-overlay hidden">
+    <div class="modal-card modal-confirm">
+      <div class="modal-header">
+        <h2 class="text-danger">Confirmar Exclusão</h2>
+        <button class="btn-close-modal" onclick="closeModal('modal-delete')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja excluir a inscrição de <strong id="delete-name">criança</strong>?</p>
+        <p class="warning-text">Esta ação é permanente e os dados serão excluídos definitivamente do banco de dados.</p>
+        <input type="hidden" id="delete-id">
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-close" onclick="closeModal('modal-delete')">Cancelar</button>
+        <button id="btn-confirm-delete" class="btn-danger-admin">Sim, Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts Administrativos -->
+  <script src="admin.js"></script>
+</body>
+</html>
